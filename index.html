@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time Lab — ПЗ 39</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <script src="./js/script.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero"></header>
+      <div class="layout">
+        <section class="card">
+          <h2>Отложенное сообщение</h2>
+          <p class="muted">
+            Нажмите кнопку: текст должен появиться с задержкой.
+          </p>
+          <div class="output" id="delayed-text" aria-live="polite">
+            Сообщение ещё не запланировано
+          </div>
+          <div class="controls">
+            <button class="btn btn--primary" id="delay-button">
+              Показать через 2 секунды
+            </button>
+          </div>
+        </section>
+        <section class="card">
+          <h2>Обратный отсчёт</h2>
+          <p class="muted">Запустите таймер и попробуйте остановить его.</p>
+          <div class="counter" id="seconds">10</div>
+          <div class="controls">
+            <button class="btn btn--primary" id="start-button">Старт</button>
+            <button class="btn" id="pause-button">Пауза</button>
+            <button class="btn" id="reset-button">Сброс</button>
+          </div>
+          <p class="status" id="status" role="status">
+            Таймер готов к запуску.
+          </p>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
