@@ -16,16 +16,52 @@ let intervalId = null;
 // Сохраните идентификатор setTimeout в timeoutId.
 delayButton.addEventListener("click", () => {
   delayedText.textContent = "Ожидаем сообщение...";
+  timeoutId = setTimeout(() => {
+    delayedText.textContent = "Сообщение появилось через 2 секунды!";
+  }, 2000);
 });
 
 // TODO 2. Запустите setInterval с интервалом 1000 мс.
 // Каждую секунду уменьшайте seconds на 1 и обновляйте secondsText.
 // При достижении 0 остановите интервал через clearInterval().
 // Не допускайте запуска второго интервала, пока работает первый.
-startButton.addEventListener("click", () => {});
+startButton.addEventListener("click", () => {
+  if (intervalId !== null) {
+    return;
+  }
+  if (seconds === 0) {
+    return;
+  }
+  status.textContent = "Таймер запущен";
+  intervalId = setInterval(() => {
+    seconds--;
+    secondsText.textContent = seconds;
+    if (seconds === 0) {
+      clearInterval(intervalId);
+      intervalId = null;
+      status.textContent = "Время вышло!";
+    }
+  }, 1000);
+});
 
 // TODO 3. Остановите текущий интервал, но сохраните число секунд.
-pauseButton.addEventListener("click", () => {});
+pauseButton.addEventListener("click", () => {
+  if (intervalId !== null) {
+    clearInterval(intervalId);
+    intervalId = null;
+    status.textContent = "Таймер на паузе";
+  }
+});
 
 // TODO 4. Отмените оба таймера и восстановите исходное состояние.
-resetButton.addEventListener("click", () => {});
+resetButton.addEventListener("click", () => {
+  clearTimeout(timeoutId);
+  clearInterval(intervalId);
+  timeoutId = null;
+  intervalId = null;
+  seconds = 10;
+  secondsText.textContent = seconds;
+  delayedText.textContent = "Здесь появится сообщение";
+  status.textContent = "Таймер готов к запуску";
+});
+
